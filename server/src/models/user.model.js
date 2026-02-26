@@ -1,17 +1,24 @@
 import mongoose, {mongo, Schema} from "mongoose";
 
 const userSchema = Schema({
-    fullName: {
+    fullname: {
         type: String,
         required: true
+    },
+    username: {
+        type: String,
+        required: true,
+        lowercase: true,
     },
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        lowercase: true
     },
     password: {
-        type: String
+        type: String,
+        select: false
     }
 }, {timestamps: true});
 

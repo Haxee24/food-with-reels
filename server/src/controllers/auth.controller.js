@@ -1,5 +1,39 @@
 import User from "../models/user.model.js";
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+
 
 export const registerUser = async (req, res) => {
-    const {fullname, email, password} = req.body;
+    try {
+        const {fullname, username, email, password} = req.body;
+        const existingUser = await User.findOne({$or: [{email}, {username}]});
+        if (existingUser){
+            return res.status(400).json({
+                message: "User already exists"
+            })
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+    
+        const user = await User.create({
+            fullname,
+            username,
+            email,
+            hashedPassword
+        });
+    
+        const token = jwt.sign({
+            id: user._id,
+        }, process.env.ACCESS_TOKEN_SECRET);
+    
+        user.password = undefined;
+    
+        return res.status(201).json({user, message: "New User created!!"});
+    } catch (error) {
+        console.error("ERROR: " + error);
+        return res.status(500).json({message: "Internal Server error"});
+    }
+}
+
+export const loginUser = async (req, res) => {
+    
 }
