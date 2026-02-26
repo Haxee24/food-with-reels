@@ -18,7 +18,7 @@ export const registerUser = async (req, res) => {
             fullname,
             username,
             email,
-            hashedPassword
+            password: hashedPassword
         });
     
         const token = jwt.sign({
@@ -39,9 +39,8 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
     try{
         const {userid, password} = req.body;
-        const user = await User.findOne({$or: [{email: userid}, {username: userid}]});
+        const user = await User.findOne({$or: [{email: userid}, {username: userid}]}).select("+password");
         if (!user) return res.status(400).json({message: "User does not exits"});
-
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid){
             return res.status(400).json({
@@ -54,7 +53,6 @@ export const loginUser = async (req, res) => {
 
         res.cookie("token", token);
         res.status(200).json({message: "User logged in successfully"})
-
     } catch (err) {
         console.error("ERROR: " + err);
         return res.status(500).json({message: "Internal Server Error"});
