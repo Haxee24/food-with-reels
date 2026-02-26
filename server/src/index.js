@@ -1,5 +1,10 @@
 import app from './app.js';
+import connectDB from './db/dbase.js';
 
-app.listen(3000, () => {
-    console.log("Server is runnning on port 3000");
+const PORT = process.env.PORT;
+
+connectDB();
+
+app.listen(PORT, () => {
+    console.log("Server is runnning on port " + PORT);
 })
