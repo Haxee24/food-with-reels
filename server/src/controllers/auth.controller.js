@@ -2,6 +2,8 @@ import User from "../models/user.model.js";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import asyncHandler from "../utils/asyncHandler.js";
+import ApiError from "../utils/ApiError.js";
+import ApiResponse from "../utils/ApiResponse.js";
 
 
 export const registerUser = asyncHandler(async (req, res) => {
@@ -38,16 +40,16 @@ export const loginUser = asyncHandler(async (req, res) => {
     if (!user) return res.status(400).json({message: "User does not exits"});
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid){
-        return res.status(400).json({
-            message: "Invalid password"
-        })
+        throw new ApiError(400, "Invalid Password");
     }
     const token = jwt.sign({
         _id: user._id
     }, process.env.ACCESS_TOKEN_SECRET);
 
     res.cookie("token", token);
-    return res.status(200).json({message: "User logged in successfully"})
+    return res.status(200).json(
+        new ApiResponse(200, {_id: user._id, token}, "User logged in successfully")
+    )
 });
 
 export const logoutUser = asyncHandler(async (req, res) => {
