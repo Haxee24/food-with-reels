@@ -7,7 +7,7 @@ import ApiResponse from "../utils/ApiResponse.js";
 
 
 export const registerUser = asyncHandler(async (req, res) => {
-    const {fullname, username, email, password, partner} = req.body;
+    const {fullname, username, email, password} = req.body;
     const existingUser = await User.findOne({$or: [{email}, {username}]});
     if (existingUser){
         return res.status(400).json({
@@ -21,16 +21,7 @@ export const registerUser = asyncHandler(async (req, res) => {
         username,
         email,
         password: hashedPassword,
-        isFoodPartner: Boolean(partner)
     });
-
-    if (user.isFoodPartner){
-        const store = await Store.create({
-            user: user._id
-        });
-        user.store = store._id;
-        await user.save();
-    };
 
     const token = jwt.sign({
         id: user._id,
@@ -65,3 +56,38 @@ export const logoutUser = asyncHandler(async (req, res) => {
   res.clearCookie("token");
   return res.status(200).json({message: "User logged out successfully"});  
 });
+
+export const registerPartner = asyncHandler(async (req, res) => {
+    const {fullname, username, email, password, storename} = req.body;
+    const existingUser = await User.findOne({$or: [{email}, {username}]});
+    if (existingUser){
+        return res.status(400).json({
+            message: "User already exists"
+        })
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = await User.create({
+        fullname,
+        username,
+        email,
+        password: hashedPassword,
+    });
+
+    const store = await Store.create({
+        user: user._id,
+        storename
+    });
+    user.store = store._id;
+    await user.save();
+
+    const token = jwt.sign({
+        id: user._id,
+    }, process.env.ACCESS_TOKEN_SECRET);
+
+    res.cookie("token", token);
+
+    user.password = undefined;
+
+    return res.status(201).json({user, message: "New User created!!"});
+})

@@ -9,6 +9,10 @@ const storeSchema = new Schema({
         type: [Schema.Types.ObjectId],
         ref: "FoodItem",
         default: []
+    },
+    storename: {
+        type: String,
+        required: true
     }
 }, {timestamps: true});
 
