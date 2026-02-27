@@ -19,7 +19,16 @@ const userSchema = Schema({
     password: {
         type: String,
         select: false
-    }
+    },
+    isFoodPartner: {
+        type: Boolean,
+        default: false
+    },
+    // Store: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "Store",
+    //     default: null
+    // }
 }, {timestamps: true});
 
 export default mongoose.model("User", userSchema);
