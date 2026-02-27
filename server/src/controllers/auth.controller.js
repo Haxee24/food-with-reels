@@ -5,6 +5,11 @@ import asyncHandler from "../utils/asyncHandler.js";
 import ApiError from "../utils/ApiError.js";
 import ApiResponse from "../utils/ApiResponse.js";
 
+const options = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV == "production"
+}
+
 
 export const registerUser = asyncHandler(async (req, res) => {
     const {fullname, username, email, password} = req.body;
@@ -27,7 +32,7 @@ export const registerUser = asyncHandler(async (req, res) => {
         id: user._id,
     }, process.env.ACCESS_TOKEN_SECRET);
 
-    res.cookie("token", token);
+    res.cookie("token", token, options);
 
     user.password = undefined;
 
@@ -46,7 +51,7 @@ export const loginUser = asyncHandler(async (req, res) => {
         _id: user._id
     }, process.env.ACCESS_TOKEN_SECRET);
 
-    res.cookie("token", token);
+    res.cookie("token", token, options);
     return res.status(200).json(
         new ApiResponse(200, {_id: user._id, token}, "User logged in successfully")
     )
@@ -85,7 +90,7 @@ export const registerPartner = asyncHandler(async (req, res) => {
         id: user._id,
     }, process.env.ACCESS_TOKEN_SECRET);
 
-    res.cookie("token", token);
+    res.cookie("token", token, options);
 
     user.password = undefined;
 
