@@ -7,7 +7,9 @@ app.use(express.json());
 app.use(cookieParser());
 
 import authRouter from './routes/auth.routes.js';
-app.use("/api/users", authRouter)
+import partnerRouter from './routes/partner.routes.js'
+app.use("/api/users", authRouter);
+app.use("/api/partner", partnerRouter);
 
 app.get("/", (req, res) => {
     res.send("HELLO ANKUR")

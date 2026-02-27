@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import ApiError from '../utils/ApiError';
+import ApiError from '../utils/ApiError.js';
 import User from '../models/user.model.js';
 
 export default async function authenticateToken(req, res, next){

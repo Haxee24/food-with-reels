@@ -11,6 +11,15 @@ const foodItemSchema = new Schema({
     },
     about: {
         type: String
+    },
+    image: {
+        type: String,
+        default: "defaultimg.png"
+    },
+    store: {
+        type: Schema.Types.ObjectId,
+        ref: "Store",
+        required: true,
     }
 }, {timestamps: true});
 
