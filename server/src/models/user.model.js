@@ -20,10 +20,6 @@ const userSchema = Schema({
         type: String,
         select: false
     },
-    isFoodPartner: {
-        type: Boolean,
-        default: false
-    },
     store: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Store",
