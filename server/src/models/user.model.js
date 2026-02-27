@@ -1,4 +1,4 @@
-import mongoose, {mongo, Schema} from "mongoose";
+import mongoose, {Schema} from "mongoose";
 
 const userSchema = Schema({
     fullname: {
@@ -24,11 +24,11 @@ const userSchema = Schema({
         type: Boolean,
         default: false
     },
-    // Store: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "Store",
-    //     default: null
-    // }
+    store: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Store",
+        default: null
+    }
 }, {timestamps: true});
 
 export default mongoose.model("User", userSchema);

@@ -1,4 +1,4 @@
-import User from "../models/user.model.js";
+import {User, Store} from "../models/index.js";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import asyncHandler from "../utils/asyncHandler.js";
@@ -7,7 +7,7 @@ import ApiResponse from "../utils/ApiResponse.js";
 
 
 export const registerUser = asyncHandler(async (req, res) => {
-    const {fullname, username, email, password} = req.body;
+    const {fullname, username, email, password, partner} = req.body;
     const existingUser = await User.findOne({$or: [{email}, {username}]});
     if (existingUser){
         return res.status(400).json({
@@ -20,8 +20,17 @@ export const registerUser = asyncHandler(async (req, res) => {
         fullname,
         username,
         email,
-        password: hashedPassword
+        password: hashedPassword,
+        isFoodPartner: Boolean(partner)
     });
+
+    if (user.isFoodPartner){
+        const store = await Store.create({
+            user: user._id
+        });
+        user.store = store._id;
+        await user.save();
+    };
 
     const token = jwt.sign({
         id: user._id,
