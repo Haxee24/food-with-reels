@@ -9,11 +9,6 @@ const foodReelSchema = new Schema({
         type: String,
         required: true
     },
-    foodItem: {
-        type: Schema.Types.ObjectId,
-        ref: "FoodItem",
-        required: true
-    },
     store: {
         type: Schema.Types.ObjectId,
         ref: "Store",
