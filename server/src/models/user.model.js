@@ -24,6 +24,11 @@ const userSchema = Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Store",
         default: null
+    },
+    cart: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: "FoodItem",
+        default: []
     }
 }, {timestamps: true});
 

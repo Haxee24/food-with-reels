@@ -14,11 +14,11 @@ export async function addFoodItem(req, res){
     if (!name){
         throw new ApiError(400, "Enter food name");
     }
-    const item = await FoodItem.create({name, price, details});
     const store = await Store.findById(user.store);
     if (!store){
         throw new ApiError(404, "Store not found");
     }
+    const item = await FoodItem.create({name, price, details, store: store._id});
     store.items.push(item._id);
     await store.save();
     return res.status(201).json(new ApiResponse(201, item, "Food Item added Successfully"));

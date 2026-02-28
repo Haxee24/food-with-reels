@@ -13,7 +13,12 @@ const storeSchema = new Schema({
     storename: {
         type: String,
         required: true
+    },
+    reels: {
+        type: [Schema.Types.ObjectId],
+        ref: "FoodReel",
+        default: [],
     }
-}, {timestamps: true});
+});
 
 export default mongoose.model("Store", storeSchema);
