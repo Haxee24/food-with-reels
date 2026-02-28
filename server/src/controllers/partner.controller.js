@@ -20,13 +20,16 @@ export const addFoodItem = asyncHandler(async function (req, res){
     if (!store){
         throw new ApiError(404, "Store not found");
     }
-    const fimglocal = req.files?.path;
-    if (fimglocal){
-        const image = await uploadOnCloudinary(fimglocal);
+    const fimglocal = req.file?.path;
+    //dev
+    if (!fimglocal){
+        return new ApiError(400, "no local file");
     }
-    else {
-        const image = "defaultfood.png"
-    }
+    const {secure_url: image} = await uploadOnCloudinary(fimglocal);
+    // let image = "defaultfood.png"
+    // if (fimglocal){
+    //     image = await uploadOnCloudinary(fimglocal);
+    // }
     const item = await FoodItem.create({name, price, details, image, store: store._id});
     store.items.push(item._id);
     await store.save();
@@ -46,7 +49,7 @@ export const addFoodReel = asyncHandler(async function(req, res) {
     if (!localreel){
         return new ApiError(400, "Reel not uploaded");
     }
-    const reel = await uploadOnCloudinary(localreel);
+    const {secure_url: reel} = await uploadOnCloudinary(localreel);
     const newReel = await FoodReel.create({
         caption,
         video:reel,
