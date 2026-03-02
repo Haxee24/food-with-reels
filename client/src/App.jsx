@@ -1,7 +1,15 @@
+import { Routes, Route } from "react-router";
+import { Home, Signin, Signup } from "./pages/index";
+import Layout from "./pages/Layout";
+
 export default function App() {
   return (
-    <div>
-      <h1>HELLO Client</h1>
-    </div>
+    <Routes>
+      <Route element={<Layout/>}>
+        <Route path="/" element={<Home/>} />
+        <Route path="/register" element={<Signup/>} />
+        <Route path="/login" element={<Signin/>} />
+      </Route>
+    </Routes>
   )
 }
