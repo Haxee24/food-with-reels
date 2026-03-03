@@ -18,6 +18,14 @@ const storeSchema = new Schema({
         type: [Schema.Types.ObjectId],
         ref: "FoodReel",
         default: [],
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true
     }
 });
 

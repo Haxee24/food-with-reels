@@ -65,13 +65,18 @@ export const logoutUser = asyncHandler(async (req, res) => {
 });
 
 export const registerPartner = asyncHandler(async (req, res) => {
-    const {fullname, username, email, password, storename} = req.body;
+    const {fullname, phone, address, username, email, password, storename} = req.body;
     const existingUser = await User.findOne({$or: [{email}, {username}]});
     if (existingUser){
         return res.status(400).json({
             message: "User already exists"
         })
     }
+    const details = [fullname, phone, address, username, email, password, storename];
+    if (details.some(val => !val)){
+        return new ApiError(400, "Enter all details");
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await User.create({
