@@ -20,6 +20,12 @@ const userSchema = Schema({
         type: String,
         select: false
     },
+    role: {
+        type: String,
+        enum: ["customer", "partner"],
+        required: true,
+        default: "customer"
+    },
     store: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Store",
@@ -28,7 +34,7 @@ const userSchema = Schema({
     cart: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: "FoodItem",
-        default: []
+        default: null
     }
 }, {timestamps: true});
 

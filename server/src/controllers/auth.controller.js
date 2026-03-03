@@ -26,6 +26,8 @@ export const registerUser = asyncHandler(async (req, res) => {
         username,
         email,
         password: hashedPassword,
+        cart: [],
+        role: "customer"
     });
 
     const token = jwt.sign({
@@ -77,6 +79,7 @@ export const registerPartner = asyncHandler(async (req, res) => {
         username,
         email,
         password: hashedPassword,
+        role: "partner"
     });
 
     const store = await Store.create({
