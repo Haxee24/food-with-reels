@@ -9,7 +9,7 @@ export const addFoodItem = asyncHandler(async function (req, res){
         throw new ApiError(401, "User not logged in");
     }
     const user = req.user;
-    if (!user?.store){
+    if (!user?.role == "partner"){
         throw new ApiError(401, "Unauthorized access");
     }
     const {name, price, details} = req.body;
@@ -38,7 +38,7 @@ export const addFoodItem = asyncHandler(async function (req, res){
 
 export const addFoodReel = asyncHandler(async function(req, res) {
     const user = req?.user;
-    if (!user.store){
+    if (!user.role == "partner"){
         return new ApiError(401, "Unauthorized Access");
     }
     const {caption} = req.body;
