@@ -65,7 +65,7 @@ export const logoutUser = asyncHandler(async (req, res) => {
 });
 
 export const registerPartner = asyncHandler(async (req, res) => {
-    const {fullname, phone, address, username, email, password, storename} = req.body;
+    const {fullname, username, email, password, store: instore} = req.body;
     const existingUser = await User.findOne({$or: [{email}, {username}]});
     if (existingUser){
         return res.status(400).json({
@@ -89,7 +89,9 @@ export const registerPartner = asyncHandler(async (req, res) => {
 
     const store = await Store.create({
         user: user._id,
-        storename
+        storename: instore?.name,
+        address: instore?.address,
+        phone: instore?.phone, 
     });
     user.store = store._id;
     await user.save();
