@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router";
 
@@ -22,7 +23,7 @@ function SignUp({ partner }) {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!form.termsAccepted) {
@@ -44,7 +45,14 @@ function SignUp({ partner }) {
         }
       })
     };
-
+    try{
+      const base = "http://localhost:3000/api/users/";
+      const endpoint = partner? base+"register-partner":base+"register";
+      const response = await axios.post(endpoint, payload);
+      console.log(response);
+    } catch (err) {
+      console.error(err);
+    }
     console.log(payload);
   };
 
