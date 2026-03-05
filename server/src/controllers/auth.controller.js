@@ -72,7 +72,7 @@ export const registerPartner = asyncHandler(async (req, res) => {
             message: "User already exists"
         })
     }
-    const details = [fullname, phone, address, username, email, password, storename];
+    const details = [fullname, instore, username, email, password];
     if (details.some(val => !val)){
         return new ApiError(400, "Enter all details");
     }
