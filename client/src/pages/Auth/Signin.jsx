@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import axios from 'axios';
+import { useNavigate } from "react-router";
 
 function SignIn() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     login: "",
     password: ""
@@ -27,6 +29,7 @@ function SignIn() {
     axios.post(endpoint, payload, options)
     .then((res)=>console.log(res))
     .catch((err)=>console.error(err));
+    navigate("/");
   };
 
   const inputStyle =
