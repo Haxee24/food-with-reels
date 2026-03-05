@@ -32,10 +32,10 @@ function SignUp({ partner }) {
     }
 
     const payload = {
-      name: form.name,
+      fullname: form.name,
       email: form.email,
       password: form.password,
-      ...( !partner && { username: form.username }),
+      username: form.username,
       role: partner ? "partner" : "customer",
       ...(partner && {
         store: {
@@ -46,14 +46,13 @@ function SignUp({ partner }) {
       })
     };
     try{
-      const base = "http://localhost:3000/api/users/";
-      const endpoint = partner? base+"register-partner":base+"register";
+      const base = import.meta.env.VITE_BACKEND+"/users";
+      const endpoint = partner? base+"/register-partner":base+"/register";
       const response = await axios.post(endpoint, payload);
       console.log(response);
     } catch (err) {
       console.error(err);
     }
-    console.log(payload);
   };
 
   const inputStyle = "w-full px-4 py-2 border rounded-lg bg-white dark:bg-neutral-950 text-gray-800 dark:text-white border-gray-300 dark:border-neutral-800 focus:outline-none focus:ring-2 focus:ring-orange-500";
@@ -76,15 +75,13 @@ function SignUp({ partner }) {
             required
           />
 
-          {!partner && (
-            <input
-              className={inputStyle}
-              name="username"
-              placeholder="Username"
-              onChange={handleChange}
-              required
-            />
-          )}
+          <input
+            className={inputStyle}
+            name="username"
+            placeholder="Username"
+            onChange={handleChange}
+            required
+          />
 
           <input
             className={inputStyle}

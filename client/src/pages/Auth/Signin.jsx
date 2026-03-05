@@ -15,12 +15,16 @@ function SignIn() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+
     const payload = {
-      login: form.login,
+      userid: form.login,
       password: form.password
     };
 
-    console.log(payload);
+    const endpoint = import.meta.env.VITE_BACKEND + "/users/login";
+    axios.post(endpoint, payload)
+    .then((res)=>console.log(res))
+    .catch((err)=>console.error(err));
   };
 
   const inputStyle =

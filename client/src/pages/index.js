@@ -1,7 +1,4 @@
-import Home from './Home/Home';
-import Signin from './Auth/Signin';
-import Signup from './Auth/Signup';
-import About from './About/About';
-import Profile from './Profile/Profile';
-
-export {Home, Signin, Signup, About, Profile};
+import Home from './general/Home';
+import Signin from './auth/Signin';
+import Signup from './auth/Signup';
+export {Home, Signin, Signup};
