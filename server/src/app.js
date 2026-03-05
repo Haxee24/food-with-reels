@@ -6,7 +6,10 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true
+}));
 
 import authRouter from './routes/auth.routes.js';
 import partnerRouter from './routes/partner.routes.js'
