@@ -20,9 +20,11 @@ function SignIn() {
       userid: form.login,
       password: form.password
     };
-
+    const options = {
+      withCredentials: true
+    };
     const endpoint = import.meta.env.VITE_BACKEND + "/users/login";
-    axios.post(endpoint, payload)
+    axios.post(endpoint, payload, options)
     .then((res)=>console.log(res))
     .catch((err)=>console.error(err));
   };
