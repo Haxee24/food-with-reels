@@ -1,12 +1,11 @@
-import {Header, Footer} from '../components/base/index';
+import {Navbar} from '../components/base/index';
 import {Outlet} from 'react-router';
 
 function Layout() {
   return (
     <>
-    <Header/>
     <Outlet/>
-    <Footer/>
+    <Navbar/>
     </>
   )
 }
