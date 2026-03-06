@@ -2,7 +2,7 @@ import {NavLink} from "react-router";
 import {Search, PlaySquare, Utensils, User} from 'lucide-react';
 
 export default function Navbar(){
-  const LinkStyle =  "flex flex-col items-center justify-center text-xs text-gray-600 dark:text-neutral-400";
+  const linkStyle =  "flex flex-col items-center justify-center text-xs text-gray-600 dark:text-neutral-400";
   const activeStyle = "text-orange-500";
 
   return (

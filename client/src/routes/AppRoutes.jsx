@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router";
 import { Signin, Signup, Home } from "../pages";
-import { Layout } from "lucide-react";
+import Layout from "../pages/Layout";
 
 function AppRoutes() {
   return (
