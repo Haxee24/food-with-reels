@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router";
-import { Signin, Signup, Home } from "../pages";
+import { Signin, Signup, ReelsPage } from "../pages";
 import Layout from "../pages/Layout";
 
 function AppRoutes() {
@@ -11,9 +11,9 @@ function AppRoutes() {
         <Route path="/signup/customer" element={<Signup partner={false} />} />
         <Route path="/signup/food-partner" element={<Signup partner={true} />} />
         <Route path="/" element={<Layout/>}>
-
           {/* general routes */}
-          <Route index element={<Home/>} />         
+          <Route index element={<ReelsPage/>} />
+          <Route path="/reels" element={<ReelsPage/>} />       
         </Route> 
       </Routes>
     </Router>

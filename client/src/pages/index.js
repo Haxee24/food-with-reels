@@ -1,4 +1,4 @@
-import Home from './general/Home';
+import ReelsPage from './general/ReelsPage';
 import Signin from './auth/Signin';
 import Signup from './auth/Signup';
-export {Home, Signin, Signup};
+export {ReelsPage, Signin, Signup};
