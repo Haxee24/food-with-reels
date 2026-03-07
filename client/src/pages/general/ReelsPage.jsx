@@ -1,8 +1,8 @@
-import React from 'react'
+import Reel from "../../components/reels/Reel";
 
 function ReelsPage() {
   return (
-    <div>Reels</div>
+    <Reel reel="example1.mp4"/>
   )
 }
 
