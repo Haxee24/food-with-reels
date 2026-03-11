@@ -5,10 +5,9 @@ export default function Reel({ reel }) {
   const videoRef = useRef(null);
   const [paused, setPaused] = useState(false);
   const [showIcon, setShowIcon] = useState(false);
-  const [mute, setMute] = useState(true);
+  const [mute, setMute] = useState(false);
 
-  const handleSound = (e) => {
-    e.stopPropagation();
+  const handleSound = () => {
     setMute((prev)=>!prev);
   }
 
@@ -25,7 +24,7 @@ export default function Reel({ reel }) {
     }
 
     setShowIcon(true);
-    setTimeout(() => setShowIcon(false), 1500);
+    setTimeout(() => setShowIcon(false), 700);
   }
   return (
     <div onClick={handleToggle} className="h-screen w-full snap-start bg-black flex items-center justify-center">
@@ -44,10 +43,7 @@ export default function Reel({ reel }) {
       className={`absolute transition-opacity duration-300
       ${showIcon?"opacity-100": "opacity-0"}`}>
         <div className='relative bg-black/40 p-4 rounded-full text-white'>
-          <div onClick={handleSound} 
-          className={`absolute bg-black/40 -ml-2 -top-20
-           mb-4 p-4 rounded-full text-white
-           ${showIcon?"pointer-events":"pointer-events-none"}`}>
+          <div onClick={handleSound} className='absolute bg-black/40 -ml-2 -top-20 mb-4 p-4 rounded-full text-white'>
             {mute? <VolumeX size={40} />: <Volume2 size={40} />}
           </div>
           {paused? <Play size={60} />: <Pause size={60} />}

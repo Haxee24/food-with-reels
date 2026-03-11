@@ -2,7 +2,7 @@ import Reel from "../../components/reels/Reel";
 
 function ReelsPage() {
   return (
-    <Reel reel="example1.mp4"/>
+    <Reel reel="example3.mp4"/>
   )
 }
 
