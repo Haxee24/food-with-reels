@@ -1,8 +1,18 @@
 import Reel from "../../components/reels/Reel";
 
 function ReelsPage() {
+  const reels = [
+    "example1.mp4",
+    "example2.mp4",
+    "example3.mp4"
+  ];
+
   return (
-    <Reel reel="example3.mp4"/>
+    <div>
+      {reels.map((video, index) => (
+        <Reel key={index} reel={video} />
+      ))}
+    </div>
   )
 }
 
