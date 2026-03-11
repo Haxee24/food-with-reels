@@ -1,8 +1,10 @@
-import {useRef, useState} from 'react';
+import {useRef, useEffect, useState} from 'react';
 import {Play, Pause, Volume2, VolumeX} from 'lucide-react';
 
-export default function Reel({ reel }) {
+export default function Reel({ reel, isActive, onVisible }) {
   const videoRef = useRef(null);
+  const containerRef = useRef(null);
+
   const [paused, setPaused] = useState(false);
   const [showIcon, setShowIcon] = useState(false);
   const [mute, setMute] = useState(true);
@@ -26,8 +28,41 @@ export default function Reel({ reel }) {
     setShowIcon(true);
     setTimeout(() => setShowIcon(false), 700);
   }
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isActive) {
+      video.play();
+      setPaused(false);
+    } else {
+      video.pause();
+      setPaused(true);
+    }
+  }, [isActive]);
+
+    // detect when reel becomes visible
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          onVisible();
+        }
+      },
+      { threshold: 0.6 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+
   return (
-    <div onClick={handleToggle} className="h-screen w-full snap-start bg-black flex items-center justify-center">
+    <div ref={containerRef} onClick={handleToggle} className="h-screen w-full snap-start bg-black flex items-center justify-center">
       
       <video
         ref={videoRef}
