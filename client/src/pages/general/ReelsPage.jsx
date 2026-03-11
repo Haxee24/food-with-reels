@@ -8,7 +8,7 @@ function ReelsPage() {
   ];
 
   return (
-    <div>
+    <div className="h-screen overflow-y-scroll snap-y snap-mandatory bg-black">
       {reels.map((video, index) => (
         <Reel key={index} reel={video} />
       ))}

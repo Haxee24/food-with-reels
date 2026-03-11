@@ -5,7 +5,7 @@ export default function Reel({ reel }) {
   const videoRef = useRef(null);
   const [paused, setPaused] = useState(false);
   const [showIcon, setShowIcon] = useState(false);
-  const [mute, setMute] = useState(false);
+  const [mute, setMute] = useState(true);
 
   const handleSound = () => {
     setMute((prev)=>!prev);
