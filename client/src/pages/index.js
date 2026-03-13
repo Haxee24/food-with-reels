@@ -1,4 +1,5 @@
 import ReelsPage from './general/ReelsPage';
+import Welcome from './general/Welcome';
 import Signin from './auth/Signin';
 import Signup from './auth/Signup';
-export {ReelsPage, Signin, Signup};
+export {ReelsPage, Signin, Signup, Welcome};
