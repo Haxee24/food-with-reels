@@ -34,6 +34,7 @@ export default function Reel({ reel, isActive, onVisible }) {
     if (!video) return;
 
     if (isActive) {
+      video.currentTime = 0;
       video.play();
       setPaused(false);
     } else {
@@ -62,7 +63,7 @@ export default function Reel({ reel, isActive, onVisible }) {
 
 
   return (
-    <div ref={containerRef} onClick={handleToggle} className="h-screen w-full snap-start bg-black flex items-center justify-center">
+    <div ref={containerRef} onClick={handleToggle} className="relative h-screen w-full snap-start bg-black flex items-center justify-center">
       
       <video
         ref={videoRef}
