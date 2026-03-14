@@ -1,30 +1,60 @@
-import Store from '../../components/stores/Store'
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Store from '../../components/stores/Store';
 
 function StoresPage() {
-
   const [stores, setStores] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchStores();
   }, []);
 
   const fetchStores = async () => {
-    try{
-        const res = await axios.get(import.meta.env.VITE_BACKEND+"/stores");
-        setStores(res.data);
-    } catch(error) {
-        console.error(error);
+    try {
+      const res = await axios.get("http://localhost:3000/api/stores");
+      setStores(res.data.data);
+    } catch (error) {
+      console.error("Failed to load stores:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="pb-20">
+    <div className="min-h-screen pb-20 bg-white dark:bg-black">
 
-      {stores.map((store) => (
-        <Store key={store._id} store={store} />
-      ))}
+      {/* Page Header */}
+      <div className="p-4 border-b border-gray-200 dark:border-neutral-800">
+        <h1 className="text-xl font-semibold text-gray-900 dark:text-white">
+          Restaurants
+        </h1>
+        <p className="text-sm text-gray-600 dark:text-neutral-400">
+          Discover food places around you
+        </p>
+      </div>
+
+      {/* Content */}
+      <div className="divide-y divide-gray-200 dark:divide-neutral-800">
+
+        {loading && (
+          <div className="p-6 text-center text-gray-600 dark:text-neutral-400">
+            Loading stores...
+          </div>
+        )}
+
+        {!loading && stores.length === 0 && (
+          <div className="p-6 text-center text-gray-600 dark:text-neutral-400">
+            No stores available.
+          </div>
+        )}
+
+        {!loading &&
+          stores.map((store) => (
+            <Store key={store._id} store={store} />
+          ))}
+
+      </div>
 
     </div>
   );
