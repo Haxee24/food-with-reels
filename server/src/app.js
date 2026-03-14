@@ -12,9 +12,11 @@ app.use(cors({
 }));
 
 import authRouter from './routes/auth.routes.js';
-import partnerRouter from './routes/partner.routes.js'
+import partnerRouter from './routes/partner.routes.js';
+import storeRouter from './routes/store.routes.js';
 app.use("/api/users", authRouter);
 app.use("/api/partner", partnerRouter);
+app.use("/api/stores", storeRouter);
 
 app.get("/", (req, res) => {
     res.send("HELLO ANKUR")
