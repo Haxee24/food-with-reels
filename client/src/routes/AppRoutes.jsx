@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router";
-import { Signin, Signup, ReelsPage, Welcome } from "../pages";
+import { Signin, Signup, ReelsPage, Welcome, StoresPage } from "../pages";
 import Layout from "../pages/Layout";
 
 function AppRoutes() {
@@ -15,8 +15,9 @@ function AppRoutes() {
         {/* Protected Routes */}
         <Route path="/" element={<Layout/>}>
           {/* Customer Routes */}
+          <Route path="/stores" element={<StoresPage/>} />
           <Route path="/reels" element={<ReelsPage/>} /> 
-          {/* Partner Routes */}      
+          {/* Partner Routes */}
         </Route> 
       </Routes>
     </Router>
