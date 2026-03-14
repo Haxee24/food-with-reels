@@ -16,12 +16,16 @@ function SignUp({ partner }) {
   });
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-
-    setForm({
-      ...form,
-      [name]: type === "checkbox" ? checked : value
-    });
+    const { name, value, type, checked, files } = e.target;
+      setForm({
+        ...form,
+        [name]:
+          type === "checkbox"
+            ? checked
+            : type === "file"
+            ? files[0]
+            : value
+      });
   };
 
   const handleSubmit = async (e) => {
@@ -42,7 +46,8 @@ function SignUp({ partner }) {
         store: {
           name: form.storeName,
           address: form.storeAddress,
-          phone: form.storePhone
+          phone: form.storePhone,
+          heroImage: form.heroImage
         }
       })
     };
@@ -131,6 +136,24 @@ function SignUp({ partner }) {
                 className={`${inputStyle} mt-3`}
                 name="storePhone"
                 placeholder="Store Contact Number"
+                onChange={handleChange}
+                required
+              />
+
+              {form.heroImage && (
+                <img
+                  src={URL.createObjectURL(form.heroImage)}
+                  alt="Preview"
+                  className="mt-3 h-32 w-full object-cover rounded-lg"
+                />
+              )}
+
+
+              <input
+                type="file"
+                name="heroImage"
+                accept="image/*"
+                className={`${inputStyle} mt-3`}
                 onChange={handleChange}
                 required
               />

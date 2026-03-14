@@ -14,6 +14,10 @@ const storeSchema = new Schema({
         type: String,
         required: true
     },
+    heroImage: {
+        type: String,
+        default: "defaultstore.png",
+    },
     reels: {
         type: [Schema.Types.ObjectId],
         ref: "FoodReel",

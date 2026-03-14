@@ -1,11 +1,11 @@
 import { Link } from "react-router";
-import { Store } from "lucide-react";
+import { Store as StoreIcon } from "lucide-react";
 
 export default function Store({ store }) {
   return (
     <Link
       to={`/stores/${store._id}`}
-      className="block rounded-xl overflow-hidden border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:shadow-md transition"
+      className="m-5 block rounded-xl overflow-hidden border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:shadow-md transition"
     >
       
       {/* Image */}
@@ -17,7 +17,7 @@ export default function Store({ store }) {
             className="w-full h-full object-cover"
           />
         ) : (
-          <Store size={40} className="text-orange-500" />
+          <StoreIcon size={40} className="text-orange-500" />
         )}
       </div>
 
@@ -25,7 +25,7 @@ export default function Store({ store }) {
       <div className="p-4">
 
         <h3 className="font-semibold text-gray-900 dark:text-white">
-          {store.name}
+          {store.storename}
         </h3>
 
         <p className="text-sm text-gray-600 dark:text-neutral-400 mt-1 line-clamp-2">
