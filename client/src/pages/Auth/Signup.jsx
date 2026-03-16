@@ -46,7 +46,7 @@ const handleChange = (e) => {
     console.log(form.heroImage)
 
     if (partner) {
-      formData.append("store[name]", form.storeName);
+      formData.append("store[storename]", form.storeName);
       formData.append("store[address]", form.storeAddress);
       formData.append("store[phone]", form.storePhone);
 
