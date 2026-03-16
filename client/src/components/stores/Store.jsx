@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { Store as StoreIcon } from "lucide-react";
 
 export default function Store({ store }) {
+  console.log(store.heroImage)
   return (
     <Link
       to={`/stores/${store._id}`}
@@ -10,9 +11,9 @@ export default function Store({ store }) {
       
       {/* Image */}
       <div className="h-40 w-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center">
-        {store.image ? (
+        {store.heroImage ? (
           <img
-            src={store.image}
+            src={store.heroImage}
             alt={store.name}
             className="w-full h-full object-cover"
           />
