@@ -66,27 +66,20 @@ export const logoutUser = asyncHandler(async (req, res) => {
 });
 
 export const registerPartner = asyncHandler(async (req, res) => {
-    const {fullname, username, email, password} = req.body;
-    const instore = {
-        name: req.body["store[name]"],
-        address: req.body["store[address]"],
-        phone: req.body["store[phone]"]
-    };
+    const {fullname, username, email, password, store: instore} = req.body;
     const localHeroPath = req.file?.path;
     const response = await uploadOnCloudinary(localHeroPath);
     const heroImage = response.secure_url;
-    console.log(heroImage)
+    console.log(instore);
     const existingUser = await User.findOne({$or: [{email}, {username}]});
     if (existingUser){
-        return res.status(400).json({
-            message: "User already exists"
-        })
+        throw new ApiError(400, "User already exists");
     }
     console.log("reached");
     console.log(instore)
     const details = [fullname, username, email, password];
     if (details.some(val => !val)){
-        return new ApiError(400, "Enter all details");
+        throw new ApiError(400, "Enter all details");
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -100,7 +93,7 @@ export const registerPartner = asyncHandler(async (req, res) => {
 
     const store = await Store.create({
         user: user._id,
-        storename: instore?.name,
+        storename: instore?.storename,
         address: instore?.address,
         phone: instore?.phone, 
         heroImage
