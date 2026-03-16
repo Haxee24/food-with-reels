@@ -15,18 +15,19 @@ function SignUp({ partner }) {
     termsAccepted: false
   });
 
-  const handleChange = (e) => {
-    const { name, value, type, checked, files } = e.target;
-      setForm({
-        ...form,
-        [name]:
-          type === "checkbox"
-            ? checked
-            : type === "file"
-            ? files[0]
-            : value
-      });
-  };
+const handleChange = (e) => {
+  const { name, value, type, checked, files } = e.target;
+
+  setForm({
+    ...form,
+    [name]:
+      type === "checkbox"
+        ? checked
+        : type === "file"
+        ? files[0]   // take the first file
+        : value
+  });
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,31 +37,40 @@ function SignUp({ partner }) {
       return;
     }
 
-    const payload = {
-      fullname: form.name,
-      email: form.email,
-      password: form.password,
-      username: form.username,
-      role: partner ? "partner" : "customer",
-      ...(partner && {
-        store: {
-          name: form.storeName,
-          address: form.storeAddress,
-          phone: form.storePhone,
-          heroImage: form.heroImage
+    const formData = new FormData();
+
+    formData.append("fullname", form.name);
+    formData.append("username", form.username);
+    formData.append("email", form.email);
+    formData.append("password", form.password);
+    console.log(form.heroImage)
+
+    if (partner) {
+      formData.append("store[name]", form.storeName);
+      formData.append("store[address]", form.storeAddress);
+      formData.append("store[phone]", form.storePhone);
+
+      if (form.heroImage) {
+        formData.append("heroImage", form.heroImage);
+      }
+    }
+
+    try {
+      const base = import.meta.env.VITE_BACKEND + "/users";
+      const endpoint = partner
+        ? base + "/register-partner"
+        : base + "/register";
+
+      const response = await axios.post(endpoint, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
         }
-      })
-    };
-    try{
-      const base = import.meta.env.VITE_BACKEND+"/users";
-      const endpoint = partner? base+"/register-partner":base+"/register";
-      const response = await axios.post(endpoint, payload);
+      });
+
       console.log(response);
     } catch (err) {
       console.error(err);
     }
-
-    navigate("/");
   };
 
   const inputStyle = "w-full px-4 py-2 border rounded-lg bg-white dark:bg-neutral-950 text-gray-800 dark:text-white border-gray-300 dark:border-neutral-800 focus:outline-none focus:ring-2 focus:ring-orange-500";

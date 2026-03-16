@@ -29,7 +29,7 @@ function CustomerNav() {
             </NavLink>
 
             <NavLink
-                to="/restaurants"
+                to="/stores"
                 className={({ isActive }) =>
                 `${linkStyle} ${isActive ? activeStyle : ""}`
                 }

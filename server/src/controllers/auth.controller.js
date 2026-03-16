@@ -1,5 +1,6 @@
 import {User, Store} from "../models/index.js";
 import bcrypt from 'bcryptjs';
+import uploadOnCloudinary from "../utils/cloudinary.js";
 import jwt from 'jsonwebtoken';
 import asyncHandler from "../utils/asyncHandler.js";
 import ApiError from "../utils/ApiError.js";
@@ -65,20 +66,27 @@ export const logoutUser = asyncHandler(async (req, res) => {
 });
 
 export const registerPartner = asyncHandler(async (req, res) => {
+    console.log(req.body)
     const {fullname, username, email, password, store: instore} = req.body;
+    const localHeroPath = req.file?.path;
+    console.log(localHeroPath)
+    const response = await uploadOnCloudinary(localHeroPath);
+    console.log(response)
+    const heroImage = response.secure_url;
     const existingUser = await User.findOne({$or: [{email}, {username}]});
     if (existingUser){
         return res.status(400).json({
             message: "User already exists"
         })
     }
+    console.log("reached");
+    console.log(instore)
     const details = [fullname, instore, username, email, password];
     if (details.some(val => !val)){
         return new ApiError(400, "Enter all details");
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-
     const user = await User.create({
         fullname,
         username,
@@ -92,6 +100,7 @@ export const registerPartner = asyncHandler(async (req, res) => {
         storename: instore?.name,
         address: instore?.address,
         phone: instore?.phone, 
+        heroImage
     });
     user.store = store._id;
     await user.save();
