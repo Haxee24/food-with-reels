@@ -68,15 +68,11 @@ export const logoutUser = asyncHandler(async (req, res) => {
 export const registerPartner = asyncHandler(async (req, res) => {
     const {fullname, username, email, password, store: instore} = req.body;
     const localHeroPath = req.file?.path;
-    const response = await uploadOnCloudinary(localHeroPath);
-    const heroImage = response.secure_url;
-    console.log(instore);
+    const {secure_url: heroImage} = await uploadOnCloudinary(localHeroPath);
     const existingUser = await User.findOne({$or: [{email}, {username}]});
     if (existingUser){
         throw new ApiError(400, "User already exists");
     }
-    console.log("reached");
-    console.log(instore)
     const details = [fullname, username, email, password];
     if (details.some(val => !val)){
         throw new ApiError(400, "Enter all details");
