@@ -3,13 +3,11 @@ import { useEffect } from "react";
 
 export default function App() {
 
-  useEffect(()=>{
-    if (window.innerWidth > 768) {
-      document.body.classList.add("force-mobile");
-    }
-  }, []);
-
   return (
-    <AppRoutes />
+    <div className="phone-container">
+      <div className="phone-screen">
+        <AppRoutes />
+      </div>
+    </div>
   )
 }
