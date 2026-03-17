@@ -8,7 +8,7 @@ function PartnerNav() {
   const activeStyle = "text-orange-500 dark:text-orange-500";
 
   return (
-    <div className="absolute bottom-0 left-0 w-full bg-white dark:bg-neutral-900 border-t border-gray-200 dark:border-neutral-800 h-16 flex justify-around items-center">
+    <div className="fixed bottom-0 left-0 w-full bg-white dark:bg-neutral-900 border-t border-gray-200 dark:border-neutral-800 h-16 flex justify-around items-center">
 
       <NavLink
         to="/partner/dashboard"
