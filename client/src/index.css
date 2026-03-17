@@ -6,6 +6,23 @@
   font-weight: 400;
 }
 
+.phone-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111; /* optional for contrast */
+}
+
+.phone-screen {
+  width: 375px;          /* iPhone width */
+  height: 812px;         /* iPhone height */
+  border-radius: 30px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 40px rgba(0,0,0,0.3);
+}
+
 
 h1{
   font-size: x-large;
