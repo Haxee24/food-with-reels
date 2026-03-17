@@ -16,6 +16,6 @@ export const getFoodItems = asyncHandler(async function(req, res){
 
 
 export const getNewStores = asyncHandler(async (req, res) => {
-    const stores = await Store.find().sort({ updatedAt: -1 }).limit(10);
+    const stores = await Store.find().sort({ updatedAt: 1 }).limit(10);
     return res.status(200).json(new ApiResponse(200, stores, "Stores retrieval successful"));
 })
