@@ -63,12 +63,12 @@ export default function Reel({ reel, isActive, onVisible }) {
 
 
   return (
-    <div ref={containerRef} onClick={handleToggle} className="relative h-screen w-full snap-start bg-black flex items-center justify-center">
+    <div ref={containerRef} onClick={handleToggle} className="relative h-full w-full snap-start bg-black overflow-hidden flex items-center justify-center">
       
       <video
         ref={videoRef}
         src={reel}
-        className="h-full w-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover"
         autoPlay
         loop
         muted={mute}

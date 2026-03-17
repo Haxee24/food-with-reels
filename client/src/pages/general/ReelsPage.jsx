@@ -11,7 +11,7 @@ function ReelsPage() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="h-screen overflow-y-scroll snap-y snap-mandatory bg-black">
+    <div className="h-full overflow-y-scroll snap-y snap-mandatory bg-black">
       {reels.map((video, index) => (
         <Reel 
         key={index}
@@ -20,6 +20,7 @@ function ReelsPage() {
         onVisible={()=> setActiveIndex(index)}
         />
       ))}
+    
     </div>
   )
 }
