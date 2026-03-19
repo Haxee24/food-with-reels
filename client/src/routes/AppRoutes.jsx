@@ -16,8 +16,8 @@ function AppRoutes() {
         {/* Protected Routes */}
         <Route path="/" element={<ProtectedRoutes/>}>
           {/* Customer Routes */}
-          <Route path="/stores" element={<StoresPage/>} />
-          <Route path="/reels" element={<ReelsPage/>} /> 
+          <Route path="stores" element={<StoresPage/>} />
+          <Route path="reels" element={<ReelsPage/>} /> 
           {/* Partner Routes */}
         </Route> 
       </Routes>

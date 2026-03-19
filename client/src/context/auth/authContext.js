@@ -3,7 +3,7 @@ import { createContext, useContext } from "react";
 const AuthContext = createContext(null);
 
 export const useAuth = () => {
-    useContext(AuthContext);
+    return useContext(AuthContext);
 }
 
 export default AuthContext;
