@@ -76,7 +76,7 @@ const handleChange = (e) => {
   const inputStyle = "w-full px-4 py-2 border rounded-lg bg-white dark:bg-neutral-950 text-gray-800 dark:text-white border-gray-300 dark:border-neutral-800 focus:outline-none focus:ring-2 focus:ring-orange-500";
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-black px-4">
+    <div className="min-h-screen -mt-15 flex items-center justify-center bg-gray-100 dark:bg-black px-4">
       <div className="bg-white dark:bg-neutral-900 p-8 rounded-2xl shadow-xl w-full max-w-md border border-transparent dark:border-neutral-800">
 
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-gray-100">

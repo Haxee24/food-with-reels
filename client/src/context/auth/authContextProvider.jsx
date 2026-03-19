@@ -7,7 +7,7 @@ function AuthContextProvider({children}) {
     const [user, setUser] = useState(null);
     async function fetchUser(){
         try{
-            const res = await axios.get(import.meta.VITE_BACKEND+"/users/get-user", {
+            const res = await axios.get(import.meta.env.VITE_BACKEND+"/users/get-user", {
                 withCredentials: true
             });
             setUser(res.data.user);
