@@ -44,15 +44,18 @@ export const registerUser = asyncHandler(async (req, res) => {
 
 export const loginUser = asyncHandler(async (req, res) => {
     const {userid, password} = req.body;
+    if (!userid || !password) {
+        throw new ApiError(400, "All fields are required");
+    }
     const user = await User.findOne({$or: [{email: userid}, {username: userid}]}).select("+password");
-    if (!user) return res.status(400).json({message: "User does not exits"});
+    if (!user) return res.status(400).json({message: "User does not exist"});
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid){
         throw new ApiError(400, "Invalid Password");
     }
     const token = jwt.sign({
         _id: user._id
-    }, process.env.ACCESS_TOKEN_SECRET);
+    }, process.env.ACCESS_TOKEN_SECRET, {expiresIn: import.meta.ACCESS_TOKEN_EXPIRY});
 
     res.cookie("token", token, options);
     return res.status(200).json(
