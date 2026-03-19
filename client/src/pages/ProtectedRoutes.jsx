@@ -6,5 +6,10 @@ export default function ProtectedRoutes() {
     if (!isAuthenticated){
         return <Navigate to={"/"} />
     }
-    return <Outlet/>
+    return (
+        <>
+            <Outlet/>
+            <Navbar/>
+        </>
+    )
 }
