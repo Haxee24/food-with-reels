@@ -15,6 +15,7 @@
 }
 
 .phone-screen {
+  cursor: url("/cursor.jpg");
   position: relative;
   width: 375px;          /* iPhone width */
   height: 812px;         /* iPhone height */
