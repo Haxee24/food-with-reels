@@ -19,11 +19,11 @@ function AuthContextProvider({children}) {
         fetchUser();
     }, [])
     return (
-        <AuthContextProvider value={{
-            
+        <AuthContext.Provider value={{
+            user
         }}>
             {children}
-        </AuthContextProvider>
+        </AuthContext.Provider>
     )
 }
 

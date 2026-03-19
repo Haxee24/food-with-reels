@@ -1,12 +1,14 @@
 import AppRoutes from "./routes/AppRoutes";
-import { useEffect } from "react";
+import AuthContextProvider from "./context/auth/authContextProvider";
 
 export default function App() {
 
   return (
     <div className="phone-container">
       <div className="phone-screen">
-        <AppRoutes />
+        <AuthContextProvider> 
+          <AppRoutes />
+        </AuthContextProvider>
       </div>
     </div>
   )
