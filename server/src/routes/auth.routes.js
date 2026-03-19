@@ -9,6 +9,6 @@ router.post("/register", registerUser, registerPartner);
 router.post("/register-partner", upload.single("heroImage"), registerPartner)
 router.post("/login", loginUser);
 router.post("/logout", logoutUser);
-router.get("/getUser", authenticateToken, getUser);
+router.get("/get-user", authenticateToken, getUser);
 
 export default router;
