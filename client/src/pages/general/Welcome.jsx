@@ -2,7 +2,7 @@ import { Link, Navigate } from "react-router";
 import { Utensils, PlayCircle } from "lucide-react";
 
 function Welcome(){
-  const user = true;
+  const user = false;
   if (user){
     return <Navigate to={"/reels"}/>
   }

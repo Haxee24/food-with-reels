@@ -8,17 +8,15 @@ function AppRoutes() {
     <Router>
       <Routes>
         {/* Public Routes */}
-        <Route index element={<Welcome/>} />
-          {/* auth routes */}
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/signup/customer" element={<Signup partner={false} />} />
-          <Route path="/signup/food-partner" element={<Signup partner={true} />} />
+        <Route path="/welcome" element={<Welcome/>} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/signup/customer" element={<Signup partner={false} />} />
+        <Route path="/signup/food-partner" element={<Signup partner={true} />}/>
+        
         {/* Protected Routes */}
         <Route path="/" element={<ProtectedRoutes/>}>
-          {/* Customer Routes */}
           <Route path="stores" element={<StoresPage/>} />
           <Route path="reels" element={<ReelsPage/>} /> 
-          {/* Partner Routes */}
         </Route> 
       </Routes>
     </Router>
