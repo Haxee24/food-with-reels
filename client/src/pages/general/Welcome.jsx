@@ -2,10 +2,6 @@ import { Link, Navigate } from "react-router";
 import { Utensils, PlayCircle } from "lucide-react";
 
 function Welcome(){
-  const user = false;
-  if (user){
-    return <Navigate to={"/reels"}/>
-  }
     return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6 bg-white dark:bg-black text-center">
 

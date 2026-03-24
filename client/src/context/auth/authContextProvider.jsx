@@ -11,8 +11,8 @@ function AuthContextProvider({children}) {
             const res = await axios.get(import.meta.env.VITE_BACKEND+"/users/get-user", {
                 withCredentials: true
             });
-            console.log("axios complete")
-            setUser(res.data.user);
+            console.log(res.data.data.user)
+            setUser(res.data.data.user);
         } catch (err) {
             setUser(null);
         }
