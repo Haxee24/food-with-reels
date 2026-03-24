@@ -55,7 +55,7 @@ export const loginUser = asyncHandler(async (req, res) => {
     }
     const token = jwt.sign({
         _id: user._id
-    }, process.env.ACCESS_TOKEN_SECRET, {expiresIn: import.meta.ACCESS_TOKEN_EXPIRY});
+    }, process.env.ACCESS_TOKEN_SECRET, {expiresIn: process.env.ACCESS_TOKEN_EXPIRY});
 
     res.cookie("token", token, options);
     return res.status(200).json(
