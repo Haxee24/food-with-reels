@@ -22,7 +22,7 @@ function StoresPage() {
   };
 
   return (
-    <div className="min-h-[78vh] bg-white dark:bg-black">
+    <div className="min-h-screen bg-white dark:bg-black">
 
       {/* Page Header */}
       <div className="p-4 border-b border-gray-200 dark:border-neutral-800">
