@@ -64,7 +64,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 });
 
 export const getUser = asyncHandler(async (req, res)=>{
-    return new ApiResponse(200, {user: req.user}, "User retrieved successfully!");
+    return res.status(200).json(new ApiResponse(200, {user: req.user}, "User retrieved successfully!"));
 })
 
 export const logoutUser = asyncHandler(async (req, res) => {
