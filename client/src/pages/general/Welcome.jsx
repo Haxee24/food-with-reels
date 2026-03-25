@@ -1,7 +1,12 @@
 import { Link, Navigate } from "react-router";
 import { Utensils, PlayCircle } from "lucide-react";
+import { useAuth } from "../../context/auth/authContext";
 
 function Welcome(){
+    const {user} = useAuth();
+    if (user){
+      return <Navigate to={"/stores"} />
+    }
     return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6 bg-white dark:bg-black text-center">
 

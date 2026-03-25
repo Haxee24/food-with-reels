@@ -29,7 +29,7 @@ function SignIn() {
     axios.post(endpoint, payload, options)
     .then((res)=>console.log(res))
     .catch((err)=>console.error(err));
-    navigate("/");
+    navigate("/stores");
   };
 
   const inputStyle =
