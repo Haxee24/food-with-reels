@@ -1,6 +1,6 @@
 import { Plus, UtensilsCrossed } from "lucide-react";
 
-export default function FoodItemCard({ item, onAddToCart }) {
+export default function FoodItem({ item, onAddToCart }) {
   return (
     <div className="rounded-2xl overflow-hidden border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-sm hover:shadow-md transition">
       {/* Image */}
@@ -11,7 +11,7 @@ export default function FoodItemCard({ item, onAddToCart }) {
             alt={item.name}
             className="w-full h-full object-cover"
           />
-        ) : (
+        ) : ( 
           <UtensilsCrossed size={36} className="text-orange-500" />
         )}
       </div>
