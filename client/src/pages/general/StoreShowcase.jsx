@@ -4,7 +4,7 @@ import axios from "axios";
 import FoodItemCard from "../../components/stores/FoodItem";
 
 export default function StoreShowcase() {
-  const { storeId } = useParams();
+  const { id: storeId } = useParams();
 
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);

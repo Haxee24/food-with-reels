@@ -4,9 +4,9 @@ import ApiError from "../utils/ApiError.js";
 import asyncHandler from "../utils/asyncHandler.js";
 
 export const getFoodItems = asyncHandler(async function(req, res){
-    const storeId = req.params;
+    const {id: storeId} = req.params;
     if (!storeId){
-        return new ApiError(500, "Invalid Store ID in params");
+        throw new ApiError(500, "Invalid Store ID in params");
     }
     const foods = await FoodItem.find({store: storeId});
 

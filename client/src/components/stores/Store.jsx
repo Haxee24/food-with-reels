@@ -2,7 +2,6 @@ import { Link } from "react-router";
 import { Store as StoreIcon } from "lucide-react";
 
 export default function Store({ store }) {
-  console.log(store.heroImage)
   return (
     <Link
       to={`/stores/${store._id}`}
