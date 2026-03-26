@@ -17,7 +17,7 @@ export default function FoodItem({ item, onAddToCart }) {
       </div>
 
       {/* Content */}
-      <div className="p-3">
+      <div className="p-3 text-start">
         <div className="flex items-start justify-between gap-2">
           <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-1">
             {item.name}
@@ -33,7 +33,7 @@ export default function FoodItem({ item, onAddToCart }) {
 
         <button
           onClick={() => onAddToCart?.(item)}
-          className="mt-3 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white py-2 font-medium transition"
+          className="cursor-pointer mt-3 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white py-2 font-medium transition"
         >
           <Plus size={18} />
           Add to Cart

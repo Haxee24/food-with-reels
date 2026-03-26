@@ -1,0 +1,9 @@
+1. add toaster on add to cart
+2. create add reel and add food item functions for partner
+3. create cart and buy utility
+4. create basic dashboard for partner store
+5. store search function
+6. modify reel component to add store details and link
+7. add profile page
+8. deploy
+9. add readme and post on linkedin
