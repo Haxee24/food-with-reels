@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router";
 import { Signin, Signup, ReelsPage, Welcome, StoresPage } from "../pages";
+import Logout from "../pages/auth/Logout";
 import Layout from "../pages/Layout";
 import ProtectedRoutes from "../pages/ProtectedRoutes";
 import StoreShowcase from "../pages/general/StoreShowcase";
@@ -19,6 +20,7 @@ function AppRoutes() {
           <Route path="stores" element={<StoresPage/>} />
           <Route path="stores/:id" element={<StoreShowcase />} />
           <Route path="reels" element={<ReelsPage/>} /> 
+          <Route path="logout" element={<Logout/>} /> 
         </Route> 
       </Routes>
     </Router>

@@ -6,7 +6,7 @@ import { useAuth } from "../../context/auth/authContext";
 
 function SignIn() {
   const navigate = useNavigate();
-  const {fetchUser} = useAuth;
+  const {fetchUser} = useAuth();
   const [form, setForm] = useState({
     login: "",
     password: ""
