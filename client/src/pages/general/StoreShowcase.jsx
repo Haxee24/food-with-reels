@@ -18,7 +18,7 @@ export default function StoreShowcase() {
       const res = await axios.get(
         `http://localhost:3000/api/stores/${storeId}`
       );
-      setFoods(res.data);
+      setFoods(res.data.data);
     } catch (error) {
       console.error("Failed to load food items:", error);
     } finally {
