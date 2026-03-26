@@ -22,11 +22,12 @@ function AuthContextProvider({children}) {
     }
     useEffect(()=>{
         fetchUser();
-    }, [])
+    }, [user]);
     return (
         <AuthContext.Provider value={{
             user,
-            loading
+            loading,
+            setUser
         }}>
             {children}
         </AuthContext.Provider>
