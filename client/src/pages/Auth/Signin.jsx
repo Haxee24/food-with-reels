@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router";
 import axios from 'axios';
 import { useNavigate } from "react-router";
+import { useAuth } from "../../context/auth/authContext";
 
 function SignIn() {
   const navigate = useNavigate();
+  const {fetchUser} = useAuth;
   const [form, setForm] = useState({
     login: "",
     password: ""
@@ -14,7 +16,7 @@ function SignIn() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
 
@@ -26,9 +28,10 @@ function SignIn() {
       withCredentials: true
     };
     const endpoint = import.meta.env.VITE_BACKEND + "/users/login";
-    axios.post(endpoint, payload, options)
+    await axios.post(endpoint, payload, options)
     .then((res)=>console.log(res))
     .catch((err)=>console.error(err));
+    await fetchUser();
     navigate("/stores");
   };
 
