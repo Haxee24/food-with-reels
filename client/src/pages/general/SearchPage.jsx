@@ -11,16 +11,18 @@ export default function SearchPage() {
 
     useEffect(() => {
         fetchStores();
-    }, []);
+    }, [query]);
 
     const fetchStores = async () => {
         try {
-        const res = await axios.get("http://localhost:3000/api/stores");
-        setStores(res.data.data);
+        const res = await axios.get("http://localhost:3000/api/stores/all");
+        const allstores = res.data.data;
+        const queriedStores = allstores.filter(store => store.storename.toLowerCase().includes(query.toLowerCase()));
+        setStores(queriedStores);
         } catch (error) {
-        console.error("Failed to load stores:", error);
+            console.error("Failed to load stores:", error);
         } finally {
-        setLoading(false);
+            setLoading(false);
         }
     };
 
@@ -40,23 +42,32 @@ export default function SearchPage() {
         {/* Content */}
         <div className="divide-y divide-gray-200 dark:divide-neutral-800">
             <input className={inputStyle} value={query} onChange={(e)=>setQuery(e.target.value)} type="text" />
-            {loading && (
-            <div className="p-6 text-center text-gray-600 dark:text-neutral-400">
-                Loading stores...
-            </div>
-            )}
+            {query === ""? (
+                <div className="p-6 text-center text-gray-600 dark:text-neutral-400">
+                    Start typing to search for stores...
+                </div>
+            ) : null}
+            {query !== "" ? (
+                <>
+                                {loading && (
+                    <div className="p-6 text-center text-gray-600 dark:text-neutral-400">
+                        Loading stores...
+                    </div>
+                    )}
 
-            {!loading && stores.length === 0 && (
-            <div className="p-6 text-center text-gray-600 dark:text-neutral-400">
-                No stores available.
-            </div>
-            )}
+                {!loading && stores.length === 0 && (
+                <div className="p-6 text-center text-gray-600 dark:text-neutral-400">
+                    No stores available.
+                </div>
+                )}
 
-            {!loading &&
-            stores.map((store) => (
-                <Store key={store._id} store={store} />
-            ))}
-
+                {!loading &&
+                stores.map((store) => (
+                    <Store key={store._id} store={store} />
+                ))}
+                </>
+                ) : null}
+           
         </div>
 
         </div>
