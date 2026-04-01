@@ -5,7 +5,7 @@ import upload from '../middleware/multer.middeware.js';
 
 const router = Router();
 
-router.post("/register", registerUser, registerPartner);
+router.post("/register", upload.none(), registerUser);
 router.post("/register-partner", upload.single("heroImage"), registerPartner)
 router.post("/login", loginUser);
 router.post("/logout", logoutUser);

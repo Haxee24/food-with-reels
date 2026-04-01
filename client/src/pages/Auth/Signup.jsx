@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 
 function SignUp({ partner }) {
-  const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "",
     username: "",
@@ -43,7 +42,6 @@ const handleChange = (e) => {
     formData.append("username", form.username);
     formData.append("email", form.email);
     formData.append("password", form.password);
-    console.log(form.heroImage)
 
     if (partner) {
       formData.append("store[storename]", form.storeName);
@@ -60,7 +58,9 @@ const handleChange = (e) => {
       const endpoint = partner
         ? base + "/register-partner"
         : base + "/register";
-
+      for (let [key, value] of formData.entries()) {
+        console.log(key, value);
+      }
       const response = await axios.post(endpoint, formData, {
         headers: {
           "Content-Type": "multipart/form-data"

@@ -14,11 +14,13 @@ const options = {
 
 export const registerUser = asyncHandler(async (req, res) => {
     const {fullname, username, email, password} = req.body;
+    if (!fullname || !username || !email || !password) {
+        throw new ApiError(400, "All fields are required");
+    }
     const existingUser = await User.findOne({$or: [{email}, {username}]});
+    
     if (existingUser){
-        return res.status(400).json({
-            message: "User already exists"
-        })
+        throw new ApiError(400, "User already exists")
     }
     const hashedPassword = await bcrypt.hash(password, 10);
 
