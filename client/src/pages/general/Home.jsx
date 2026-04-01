@@ -1,7 +1,11 @@
 import { useAuth } from "../../context/auth/authContext";
+import { Navigate } from "react-router";
 
 function Home() {
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
+    if (loading) {
+        return <p>Loading...</p>;
+    }
     if (!user) {
         return <Navigate to={"/welcome"} />
     }
@@ -12,7 +16,7 @@ function Home() {
         return <Navigate to={"/stores"} />
     }
     return (
-    <div>Home</div>
+        <Navigate to={"/welcome"} />
   )
 }
 
