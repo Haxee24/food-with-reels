@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 
 function SignUp({ partner }) {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "",
     username: "",
@@ -66,8 +67,11 @@ const handleChange = (e) => {
           "Content-Type": "multipart/form-data"
         }
       });
-
       console.log(response);
+      if (response.status === 201) {
+        alert("Account created successfully! Please log in.");
+        navigate("/signin");
+      }
     } catch (err) {
       console.error(err);
     }
