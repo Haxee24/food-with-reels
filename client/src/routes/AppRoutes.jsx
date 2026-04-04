@@ -24,6 +24,12 @@ function AppRoutes() {
               <Route path="reels" element={<ReelsPage/>} /> 
               <Route path="search" element={<SearchPage/>} />
             </Route>
+            <Route element={<ProtectedRoutes role={"partner"}/>} >
+              <Route path="add-reel" element={<StoresPage/>} />
+              <Route path="add-item" element={<StoreShowcase />} />
+              <Route path="reels" element={<ReelsPage/>} /> 
+              <Route path="search" element={<SearchPage/>} />
+            </Route>
             <Route path="logout" element={<Logout/>} /> 
           </Route>
         </Route> 
