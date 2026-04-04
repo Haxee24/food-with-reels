@@ -21,7 +21,7 @@ function PartnerNav() {
       </NavLink>
 
       <NavLink
-        to="/partner/add-reel"
+        to="/add-reel"
         className={({ isActive }) =>
           `${linkStyle} ${isActive ? activeStyle : ""}`
         }
