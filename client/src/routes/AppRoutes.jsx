@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router";
-import { Signin, Signup, SearchPage, ReelsPage, Welcome, StoresPage, StoreShowcase } from "../pages";
-import Logout from "../pages/auth/Logout";
+import { ReelForm } from "../pages";
+import { SearchPage, ReelsPage, Welcome, StoresPage, StoreShowcase } from "../pages";
+import { Signin, Signup, Logout } from "../pages";
 import Layout from "../pages/Layout";
 import Home from "../pages/general/Home";
 import ProtectedRoutes from "../pages/ProtectedRoutes";
@@ -25,7 +26,7 @@ function AppRoutes() {
               <Route path="search" element={<SearchPage/>} />
             </Route>
             <Route element={<ProtectedRoutes role={"partner"}/>} >
-              <Route path="add-reel" element={<StoresPage/>} />
+              <Route path="add-reel" element={<ReelForm/>} />
               <Route path="add-item" element={<StoreShowcase />} />
               <Route path="reels" element={<ReelsPage/>} /> 
               <Route path="search" element={<SearchPage/>} />

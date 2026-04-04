@@ -11,13 +11,17 @@ export default function ReelForm() {
     };
 
     return (
-        <div className='min-h-screen bg-white dark:bg-black px-4 py-6 pb-24'>
-            <h1>Add New Reel</h1>
-
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" placeholder='Reel Title' />
-                <button type='submit'>Submit</button>
-            </form>
-        </div>
+            <div className="min-h-screen bg-white dark:bg-black">
+        
+              {/* Page Header */}
+              <div className="p-4 border-b border-gray-200 dark:border-neutral-800">
+                <h1 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  Add New Reel
+                </h1>
+                <p className="text-sm text-gray-600 dark:text-neutral-400">
+                  Discover food places around you
+                </p>
+              </div>
+            </div>
     )
 }
