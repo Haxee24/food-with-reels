@@ -1,4 +1,4 @@
-import Reel from "../../components/reels/Reel";
+import Reel from "../../../components/reels/Reel";
 import { useState } from "react";
 
 function ReelsPage() {

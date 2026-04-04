@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Store from '../../components/stores/Store';
+import Store from '../../../components/stores/Store';
 
 export default function SearchPage() {
     const [query, setQuery] = useState("");

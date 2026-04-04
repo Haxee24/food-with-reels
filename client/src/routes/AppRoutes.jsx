@@ -1,11 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router";
-import { Signin, Signup, SearchPage, ReelsPage, Welcome, StoresPage } from "../pages";
+import { Signin, Signup, SearchPage, ReelsPage, Welcome, StoresPage, StoreShowcase } from "../pages";
 import Logout from "../pages/auth/Logout";
 import Layout from "../pages/Layout";
 import Home from "../pages/general/Home";
 import ProtectedRoutes from "../pages/ProtectedRoutes";
-import StoreShowcase from "../pages/general/StoreShowcase";
-
 function AppRoutes() {
   return (
     <Router>

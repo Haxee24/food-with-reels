@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
-import FoodItemCard from "../../components/stores/FoodItem";
+import FoodItemCard from "../../../components/stores/FoodItem";
 
 export default function StoreShowcase() {
   const { id: storeId } = useParams();
