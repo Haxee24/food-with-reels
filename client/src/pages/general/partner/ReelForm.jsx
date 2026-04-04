@@ -5,7 +5,7 @@ export default function ReelForm() {
     const inputStyle =
     "w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500";
 
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm();
     const onSubmit = (data) => {
         console.log(data);
     };
@@ -22,6 +22,24 @@ export default function ReelForm() {
                   Discover food places around you
                 </p>
               </div>
+              <div className='min-h-screen bg-white dark:bg-black px-4 py-6 pb-24'>
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                        <input
+                        type="text"
+                        placeholder="Reel Title"
+                        className={inputStyle}
+                        {...register("title", { required: "Title is required" })}
+                        />
+
+                        {errors.title && (
+                        <p className="text-red-500 text-sm">{errors.title.message}</p>
+                        )}
+
+                        <button type='submit' className="bg-orange-500 text-white px-4 py-2 rounded-lg">
+                        Submit
+                        </button>
+                    </form>
+                </div>
             </div>
     )
 }
