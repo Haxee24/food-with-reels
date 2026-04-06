@@ -5,7 +5,7 @@ import upload from '../middleware/multer.middeware.js';
 
 const router = Router();
 
-router.post("/addItem", authenticateToken, upload.single("foodimg"), addFoodItem);
-router.post("/addReel", authenticateToken, upload.single("reel"), addFoodReel);
+router.post("/add-item", authenticateToken, upload.single("foodimg"), addFoodItem);
+router.post("/add-reel", authenticateToken, upload.single("reel"), addFoodReel);
 
 export default router;
