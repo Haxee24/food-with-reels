@@ -14,6 +14,9 @@ app.use(cors({
 import authRouter from './routes/auth.routes.js';
 import partnerRouter from './routes/partner.routes.js';
 import storeRouter from './routes/store.routes.js';
+import customerRouter from './routes/customer.routes.js';
+
+app.use("/api/customer", customerRouter);
 app.use("/api/users", authRouter);
 app.use("/api/partner", partnerRouter);
 app.use("/api/stores", storeRouter);
