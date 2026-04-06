@@ -20,7 +20,8 @@ export default function ReelForm() {
       formData.append("caption", data.title);
       console.log(data.title);
       formData.append("reel", data.reel[0]);
-      axios.post("/api/partner/add-reel", formData, {
+      console.log(import.meta.env.VITE_BACKEND)
+      axios.post(import.meta.env.VITE_BACKEND + "/partner/add-reel", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
