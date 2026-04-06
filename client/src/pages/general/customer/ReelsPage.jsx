@@ -2,11 +2,12 @@ import Reel from "../../../components/reels/Reel";
 import { useState } from "react";
 
 function ReelsPage() {
-  const reels = [
-    "example1.mp4",
-    "example2.mp4",
-    "example3.mp4"
-  ];
+  const [reels, setReels] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchReels = async () => {
+    try {
+      const res = await axios.get("http://localhost:3000/api/customers/new-reels", { withCredentials: true });
 
   const [activeIndex, setActiveIndex] = useState(0);
 
