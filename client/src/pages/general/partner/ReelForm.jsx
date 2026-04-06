@@ -25,6 +25,7 @@ export default function ReelForm() {
         headers: {
           "Content-Type": "multipart/form-data",
         },
+        withCredentials: true
       })
       .then((response) => {
         console.log("Reel created successfully:", response.data);
