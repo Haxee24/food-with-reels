@@ -16,7 +16,7 @@ export default function StoreShowcase() {
   const fetchFoods = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/stores/${storeId}`
+        `http://localhost:3000/api/stores/foods/${storeId}`
       );
       setFoods(res.data.data);
     } catch (error) {
