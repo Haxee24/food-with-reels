@@ -27,7 +27,9 @@ export default function SearchPage() {
     };
 
     return (
-        <div className="min-h-screen bg-white dark:bg-black">
+        <div className="min-h-185.5
+        
+         bg-white dark:bg-black">
         {/* Page Header */}
         <div className="p-4 border-b border-gray-200 dark:border-neutral-800">
             <h1 className="text-xl font-semibold text-gray-900 dark:text-white">
