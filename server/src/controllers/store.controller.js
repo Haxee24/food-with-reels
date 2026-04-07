@@ -15,7 +15,19 @@ export const getFoodItems = asyncHandler(async function(req, res){
 });
 
 export const getStoreById = asyncHandler(async function(req, res){
-    console.log("HI")
+    const {id: storeId} = req.params;
+    const store = await Store.findById(storeId);
+    if (!store){
+        throw new ApiError(500, "Invalid Store ID in params");
+    }
+    return res.status(200).json(
+        new ApiResponse(
+            200,
+            store,
+            "Store details retrieved"
+        )
+    )
+
 })
 
 export const getAllStores = asyncHandler(async (req, res) => {
