@@ -14,6 +14,10 @@ export const getFoodItems = asyncHandler(async function(req, res){
     .json(new ApiResponse(200, foods, "Store items retrieved"))
 });
 
+export const getStoreById = asyncHandler(async function(req, res){
+    console.log("HI")
+})
+
 export const getAllStores = asyncHandler(async (req, res) => {
     const stores = await Store.find();
     return res.status(200).json(new ApiResponse(200, stores, "Stores retrieval successful"));
