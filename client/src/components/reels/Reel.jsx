@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { Link } from 'react-router';
 
 export default function Reel({ reel, isActive, onVisible }) {
   const videoRef = useRef(null);
@@ -12,7 +13,6 @@ export default function Reel({ reel, isActive, onVisible }) {
 
   const handleSound = (e) => {
     e.stopPropagation();
-    console.log(reel.store)
     setMute((prev) => !prev);
   };
 
@@ -100,6 +100,24 @@ export default function Reel({ reel, isActive, onVisible }) {
           </div>
           {paused ? <Play size={60} /> : <Pause size={60} />}
         </div>
+      </div>
+
+      <div className=" absolute bottom-6 left-4 right-20 z-10 text-white">
+        {reel.store?._id && (
+          <Link
+            to={`/stores/${reel.store._id}`}
+            onClick={(e) => e.stopPropagation()}
+            className="font-semibold text-lg underline underline-offset-4"
+          >
+            {reel.store?.storename || "Store"}
+          </Link>
+        )}
+
+        {reel.caption && (
+          <p className="mt-2 text-sm md:text-base text-white/90">
+            {reel.caption}
+          </p>
+        )}
       </div>
 
     </div>
