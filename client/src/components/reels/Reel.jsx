@@ -1,6 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
-import { Link } from 'react-router';
 
 export default function Reel({ reel, isActive, onVisible }) {
   const videoRef = useRef(null);
@@ -13,6 +12,7 @@ export default function Reel({ reel, isActive, onVisible }) {
 
   const handleSound = (e) => {
     e.stopPropagation();
+    console.log(reel.store)
     setMute((prev) => !prev);
   };
 
@@ -42,6 +42,7 @@ export default function Reel({ reel, isActive, onVisible }) {
     if (!video) return;
 
     if (isActive) {
+      
       const playPromise = video.play();
       if (playPromise !== undefined) {
         playPromise
@@ -79,11 +80,8 @@ export default function Reel({ reel, isActive, onVisible }) {
   }, [onVisible]);
 
   return (
-    <div
-      ref={containerRef}
-      onClick={handleToggle}
-      className="relative h-full w-full snap-start bg-black overflow-hidden flex items-center justify-center"
-    >
+    <div ref={containerRef} onClick={handleToggle} className="relative h-full w-full snap-start bg-black overflow-hidden flex items-center justify-center">
+      
       <video
         ref={videoRef}
         src={reel.video || reel}
@@ -93,40 +91,17 @@ export default function Reel({ reel, isActive, onVisible }) {
         playsInline
       />
 
-      {/* Store name + caption */}
-      <div className="absolute right-20 z-10 bg-amber-400 text-white">
-        {reel.store?._id && (
-          <Link
-            to={`/stores/${reel.store._id}`}
-            onClick={(e) => e.stopPropagation()}
-            className="font-semibold text-lg underline underline-offset-4"
-          >
-            {reel.store?.storename || "Store"}
-          </Link>
-        )}
-
-        {reel.caption && (
-          <p className="mt-2 text-sm md:text-base text-white/90">
-            {reel.caption}
-          </p>
-        )}
-      </div>
-
-      <div
-        onClick={handleSound}
-        className="absolute bottom-24 right-4 z-20 bg-black/40 p-4 rounded-full text-white"
-      >
-        {mute ? <VolumeX size={40} /> : <Volume2 size={40} />}
-      </div>
-
-      <div
-        className={`absolute transition-opacity duration-300 z-10
-        ${showIcon ? "opacity-100" : "opacity-0"}`}
-      >
+      <div 
+      className={`absolute transition-opacity duration-300
+      ${showIcon ? "opacity-100" : "opacity-0"}`}>
         <div className='relative bg-black/40 p-4 rounded-full text-white'>
+          <div onClick={handleSound} className='absolute bg-black/40 -ml-2 -top-20 mb-4 p-4 rounded-full text-white'>
+            {mute ? <VolumeX size={40} /> : <Volume2 size={40} />}
+          </div>
           {paused ? <Play size={60} /> : <Pause size={60} />}
         </div>
       </div>
+
     </div>
   );
 }

@@ -9,7 +9,14 @@ function ReelsPage() {
   const fetchReels = async () => {
     try {
       const res = await axios.get(import.meta.env.VITE_BACKEND + "/customer/new-reels", { withCredentials: true });
-      setReels(res.data.data);
+      const retrieved = await  Promise.all(res.data.data.map(async (reel) => {
+        const store = await axios.get(import.meta.env.VITE_BACKEND + "/stores/" + reel.store);
+        return {
+          ...reel,
+          store: store.data.data
+        }
+      }));
+      setReels(retrieved);
     } catch (err) {
       console.error("Error fetching reels:", err);
     } finally {
