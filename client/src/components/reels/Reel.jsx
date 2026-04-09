@@ -102,7 +102,7 @@ export default function Reel({ reel, isActive, onVisible }) {
         </div>
       </div>
 
-      <div className=" absolute bottom-6 left-4 right-20 z-10 text-white">
+      <div className="text-left p-5 absolute bottom-15 min-h-25 bg-black/70 w-full  z-10 text-white">
         {reel.store?._id && (
           <Link
             to={`/stores/${reel.store._id}`}
