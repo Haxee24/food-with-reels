@@ -48,12 +48,6 @@ export default function ReelForm() {
               </div>
               <div className='min-h-screen bg-white dark:bg-black px-4 py-6 pb-24'>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                        <input
-                        type="text"
-                        placeholder="Reel Title"
-                        className={inputStyle}
-                        {...register("title", { required: "Title is required" })}
-                        />
 
                           <label className="flex flex-col items-center justify-center w-full px-4 py-6 rounded-xl border-2 border-dashed border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-gray-600 dark:text-neutral-400 cursor-pointer hover:border-orange-500 hover:text-orange-500 transition">
                             <span>Click to upload a reel video</span>
@@ -91,6 +85,12 @@ export default function ReelForm() {
                                 Selected: {selectedVideo[0].name}
                               </span>
                             )}
+                          <input
+                        type="text"
+                        placeholder="Reel Caption"
+                        className={inputStyle}
+                        {...register("title", { required: "Title is required" })}
+                        />
                             <br />
                         {errors.title && (
                         <p className="text-red-500 text-sm">{errors.title.message}</p>
