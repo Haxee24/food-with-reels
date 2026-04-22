@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router";
-import { ReelForm } from "../pages";
+import { ReelForm, MyStore } from "../pages";
 import { SearchPage, ReelsPage, Welcome, StoresPage, StoreShowcase } from "../pages";
 import { Signin, Signup, Logout } from "../pages";
 import Layout from "../pages/Layout";
@@ -27,7 +27,7 @@ function AppRoutes() {
             </Route>
             <Route element={<ProtectedRoutes role={"partner"}/>} >
               <Route path="add-reel" element={<ReelForm/>} />
-              <Route path="add-item" element={<StoreShowcase />} />
+              <Route path="my-store" element={<MyStore />} />
               <Route path="reels" element={<ReelsPage/>} /> 
               <Route path="search" element={<SearchPage/>} />
             </Route>

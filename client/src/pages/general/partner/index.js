@@ -1,3 +1,3 @@
 import ReelForm from "./ReelForm";
-
-export {ReelForm};
+import MyStore from "./MyStore";
+export {ReelForm, MyStore};
