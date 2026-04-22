@@ -10,7 +10,7 @@ function Home() {
         return <Navigate to={"/welcome"} />
     }
     if (user.role === "partner") {
-        return <Navigate to={"/dashboard"} />
+        return <Navigate to={"/my-store"} />
     }
     if (user.role === "customer") {
         return <Navigate to={"/stores"} />
